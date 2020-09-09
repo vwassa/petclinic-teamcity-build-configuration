@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.MavenBuildStep
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
@@ -49,6 +50,9 @@ object Build : BuildType({
             goals = "clean package"
             localRepoScope = MavenBuildStep.RepositoryScope.MAVEN_DEFAULT
             dockerImage = "maven:3.6.0-jdk-8"
+        }
+        script{
+            scriptContent = "echo Build Successful. And I print contextParamValue=${DslContext.getParameter("myValue", "2")}"
         }
     }
 
