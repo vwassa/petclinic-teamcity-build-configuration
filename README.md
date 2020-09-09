@@ -1,0 +1,1 @@
+# petclinic-teamcity-build-configuration
